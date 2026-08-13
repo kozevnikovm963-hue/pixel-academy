@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { courseGroups, courses, reviews, teachers } from "@/lib/site-data";
+import { licenseDocument, siteBasePath } from "@/lib/documents";
 
 const navItems = [
   { href: "#courses", label: "Курсы" },
@@ -33,8 +34,19 @@ export function LandingPage() {
   const [formResult, setFormResult] = useState("");
   const [selectedCourseIndex, setSelectedCourseIndex] = useState<number | null>(null);
   const [expandedProgram, setExpandedProgram] = useState<string | null>(null);
+  const courseDetailsRef = useRef<HTMLElement>(null);
   const selectedCourse =
     selectedCourseIndex === null ? null : courseGroups[selectedCourseIndex];
+
+  useEffect(() => {
+    if (selectedCourseIndex === null) return;
+
+    const frame = requestAnimationFrame(() => {
+      courseDetailsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [selectedCourseIndex]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -126,8 +138,7 @@ export function LandingPage() {
               Записаться
             </button>
             <small>
-              Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Документы
-              будут добавлены позже.
+              Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.
             </small>
             <p className="form-result" role="status" aria-live="polite">
               {formResult}
@@ -164,7 +175,7 @@ export function LandingPage() {
                 <span className="age">{course.age}</span>
                 <Image
                   className="course-illustration"
-                  src={course.image}
+                  src={`${siteBasePath}${course.image}`}
                   alt=""
                   width={180}
                   height={180}
@@ -188,6 +199,7 @@ export function LandingPage() {
             <section
               className={`course-group group-${selectedCourse.accent}`}
               id="course-details"
+              ref={courseDetailsRef}
               aria-live="polite"
             >
               <div className="course-group-head">
@@ -292,7 +304,7 @@ export function LandingPage() {
                 <div className="teacher-photo">
                   <Image
                     className="avatar"
-                    src={teacher.image}
+                    src={`${siteBasePath}${teacher.image}`}
                     alt={teacher.name}
                     width={640}
                     height={640}
@@ -342,9 +354,12 @@ export function LandingPage() {
             <h2>Партнерская программа</h2>
             <p>Раздел для условий сотрудничества, реферальной программы и партнерских материалов.</p>
           </article>
-          <article>
+          <article id="organization-information">
             <h2>Сведения об образовательной организации</h2>
-            <p>Сюда добавим документы, лицензии, реквизиты и обязательную информацию.</p>
+            <p>Основная информация, реквизиты и сведения об образовательной деятельности.</p>
+            <a className="info-document-link" href={`${siteBasePath}/documents#organization`}>
+              Перейти в раздел
+            </a>
           </article>
         </section>
       </main>
@@ -362,9 +377,10 @@ export function LandingPage() {
         </div>
         <div>
           <h3>Документы</h3>
-          <a href="#">Оферта</a>
-          <a href="#">Политика персональных данных</a>
-          <a href="#">Согласие на обработку данных</a>
+          <a href={`${siteBasePath}/documents#documents-list`}>Документы</a>
+          <a href={`${siteBasePath}/documents#organization`}>Сведения об организации</a>
+          <a href={`${siteBasePath}${licenseDocument}`} target="_blank" rel="noreferrer">Лицензия</a>
+          <a href={`${siteBasePath}/documents#educational-programs`}>Образовательные программы</a>
         </div>
       </footer>
     </div>
