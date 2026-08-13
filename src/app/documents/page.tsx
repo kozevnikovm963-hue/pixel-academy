@@ -85,7 +85,7 @@ export default function DocumentsPage() {
                     <a href={`${siteBasePath}${document.href}`} target="_blank" rel="noreferrer" key={document.href}>
                       <span>{String(index + 1).padStart(2, "0")}</span>
                       <strong>{document.title}</strong>
-                      <span aria-hidden="true">↗</span>
+                      <span className="document-link-icon" aria-hidden="true" />
                     </a>
                   ))}
                 </div>

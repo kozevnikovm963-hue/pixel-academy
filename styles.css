@@ -1283,9 +1283,39 @@ blockquote cite {
   font-weight: 900;
 }
 
-.document-list a > span:last-child {
+.document-link-icon {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border: 1px solid rgba(98, 54, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(98, 54, 255, 0.07);
   color: var(--purple);
-  font-size: 18px;
+}
+
+.document-link-icon::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.document-link-icon::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 7px;
+  width: 13px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: rotate(-45deg);
+  transform-origin: center;
 }
 
 .document-list a:hover strong {
@@ -1613,6 +1643,10 @@ blockquote cite {
   .document-list a {
     grid-template-columns: 28px 1fr auto;
     gap: 8px;
+  }
+
+  .document-link-icon {
+    align-self: start;
   }
 
   .teacher-copy h3 {
