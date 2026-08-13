@@ -376,7 +376,6 @@ export function LandingPage() {
           <a href="https://vk.ru/club239075406">VK группа</a>
         </div>
         <div>
-          <h3>Документы</h3>
           <a href={`${siteBasePath}/documents#documents-list`}>Документы</a>
           <a href={`${siteBasePath}/documents#organization`}>Сведения об организации</a>
           <a href={`${siteBasePath}${licenseDocument}`} target="_blank" rel="noreferrer">Лицензия</a>

@@ -81,9 +81,8 @@ export default function DocumentsPage() {
                   <span className="document-count">{group.documents.length}</span>
                 </summary>
                 <div className="document-list">
-                  {group.documents.map((document, index) => (
+                  {group.documents.map((document) => (
                     <a href={`${siteBasePath}${document.href}`} target="_blank" rel="noreferrer" key={document.href}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
                       <strong>{document.title}</strong>
                       <span className="document-link-icon" aria-hidden="true" />
                     </a>

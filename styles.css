@@ -1268,19 +1268,13 @@ blockquote cite {
 
 .document-list a {
   display: grid;
-  grid-template-columns: 36px 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: start;
   gap: 12px;
   padding: 15px 12px;
   border-top: 1px solid var(--line);
   color: var(--text);
   line-height: 1.4;
-}
-
-.document-list a > span:first-child {
-  color: var(--purple);
-  font-size: 12px;
-  font-weight: 900;
 }
 
 .document-link-icon {
@@ -1641,7 +1635,7 @@ blockquote cite {
   }
 
   .document-list a {
-    grid-template-columns: 28px 1fr auto;
+    grid-template-columns: 1fr auto;
     gap: 8px;
   }
 

@@ -117,7 +117,7 @@ export const documentGroups: DocumentGroup[] = [
     ],
   },
   {
-    title: "Политики и соглашения",
+    title: "Персональные данные",
     description:
       "Документы об использовании сайта и обработке персональных данных.",
     documents: [
